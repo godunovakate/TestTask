@@ -1,6 +1,4 @@
-//import react from "react";
-
-const Card = (book:any) => {
+const Card = ({ book }: { book: any }) => {
     console.log(book);
     return (
         <>
@@ -8,20 +6,16 @@ const Card = (book:any) => {
                 book.map((item:any) => {
                     let thumbnail=item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.smallThumbnail;
                     return ( 
-                        <>
-                        <div className="card">
+                        <div className="card" key={item.id}>
                             <img src={thumbnail} alt="" />
                             <div className="bottom">
-                                <h3 className="title">React JS</h3>
-                                <p className="amount">&#8377;3290</p>
-                            </div>
+                            <h3 className="title">{item.volumeInfo.title}</h3>
+                                    <p className="amount">&#8377;</p> 
+                                     </div>
                         </div>
-                        </>
                     )
                 })
             }
-
-
         </>
     )
 }
