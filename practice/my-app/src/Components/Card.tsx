@@ -1,16 +1,18 @@
-const Card = ({ book }: { book: any }) => {//явное задание
+import React from "react";
+
+
+const Card = ({ book }: { book: [] }) => {
     console.log(book);
     return (
         <>
             {
                 book.map((item: any) => {
-                    let thumbnail = item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.smallThumbnail;
                     return (
                         <div className="card" key={item.id}>
-                            <img src={thumbnail} alt="" />
+                            <img src={item.thumbnail} alt="" />
                             <div className="bottom">
                                 <h3 className="title">{item.volumeInfo.title}</h3>
-                                <p className="amount">&#8377;</p>
+                                <p className="amount">₹</p>
                             </div>
                         </div>
                     )

@@ -1,16 +1,11 @@
 import React, { useState } from "react";
-import Card from "./Card";
-import axios from "axios";
+import Card from "../Card";
+import searchBook from "./searchBook";
+
 const Main = () => {
-    const [search, setSearch] = useState("");
-    const [bookData, setData] = useState([]);
-    const searchBook = (evt: any) => {//вынести
-        if (evt.key === "Enter") {
-            axios.get(`https://www.googleapis.com/books/v1/volumes?q=${search}&key=AIzaSyCASKsQWlSSU553100lX-MQLBrFB3E7RLM&maxResults=40`)
-                .then(res => setData(res.data.items)) //новый массив 
-                .catch(err => console.log(err))
-        }
-    }
+    const [search, setSearch] = useState('');
+    const [bookData, setData] = useState<any[]>([]); // указан тип данных
+
     return (
         <>
             <div className="header">
@@ -21,8 +16,8 @@ const Main = () => {
                     <h2>Найди свою книгу</h2>
                     <div className="search">
                         <input type="text" placeholder="Enter Your Book Name"
-                            value={search} onChange={e => setSearch(e.target.value)} //явно задавать 
-                            onKeyPress={searchBook} />
+                            value={search} onChange={e => setSearch(e.target.value)} 
+                            onKeyPress={e => searchBook(e, setSearch, setData)} />
 
                         <button><i className="fas fa-search"></i></button>
 
@@ -33,7 +28,7 @@ const Main = () => {
 
             <div className="conteiner">
                 {
-                    <Card book={bookData as any} /> //any
+                    <Card book={bookData as []} /> 
                 }
 
             </div>
