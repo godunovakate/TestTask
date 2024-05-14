@@ -196,3 +196,13 @@ html{
     text-align: justify;
     font-size: 13px;
 }
+.all, .art, .biography, .computers, .history, .medical, .poetry{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 25px;
+    padding: 0 0.5rem;
+    font-size: 16px;
+    font-weight: bolder;
+}

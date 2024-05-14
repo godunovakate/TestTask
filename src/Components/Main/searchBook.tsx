@@ -14,9 +14,11 @@ const searchBook = (
       .then(res => {
         const mappedData = res.data.items.map((item: Book) => {
           const thumbnail = item.volumeInfo.imageLinks?.smallThumbnail;
+          const categories = item.volumeInfo.categories;
           return {
             ...item,
-            thumbnail: thumbnail
+            thumbnail: thumbnail,
+            categories: categories
           };
         });
         setData(mappedData);

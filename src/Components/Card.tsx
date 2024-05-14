@@ -20,6 +20,7 @@ const Card = ({ book }: { book: Book[] }) => {
           <img src={item.thumbnail} alt={item.volumeInfo.title} />
           <div className="bottom">
             <h3 className="title">{item.volumeInfo.title}</h3>
+            
             {/* Здесь можно добавить логику для отображения цены или другой информации */}
           </div>
         </div>
