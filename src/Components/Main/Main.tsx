@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import Card from "../Card";
 import searchBook from "./searchBook";
+import { Book } from "./types"; // Предполагается, что типы вынесены в отдельный файл
 
 const Main = () => {
     const [search, setSearch] = useState('');
-    const [bookData, setData] = useState<any[]>([]); // указан тип данных
+    const [bookData, setData] = useState<Book[]>([]); // Обновленный тип данных
 
     return (
         <>
@@ -26,14 +27,12 @@ const Main = () => {
                 </div>
             </div>
 
-            <div className="conteiner">
-                {
-                    <Card book={bookData as []} /> 
-                }
-
+            <div className="container">
+                {bookData.length > 0 && <Card book={bookData} />} 
             </div>
 
         </>
     )
 }
+
 export default Main;
