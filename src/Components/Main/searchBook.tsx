@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Book } from './types';
+import { Book } from '../../constants/types';
 
 const searchBook = (
   evt: React.KeyboardEvent<HTMLInputElement>,

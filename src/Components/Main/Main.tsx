@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Card from '../Card/Card';
 import searchBook from './searchBook';
-import { Book } from './types';
+import { Book } from '../../constants/types';
 
 const Main = () => {
   const [search, setSearch] = useState('');
