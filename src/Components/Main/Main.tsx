@@ -1,21 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from '../Card/Card';
-import searchBook from './searchBook';
-import { Book } from '../../constants/types';
+import searchBook from '../../utils/searchBook';
+import { Book } from '../../constants/bookInterface';
+import useFilter from '../../utils/categoriesFiltr';
 
 const Main = () => {
   const [search, setSearch] = useState('');
-  const [bookData, setData] = useState<Book[]>([]); // Обновленный тип данных
-  const [filtr, setFiltr] = useState('all');
-
-  const handleCategoryClick = (categories: string) => {
-    setFiltr(categories);
-  };
-
-  const filteredBooks =
-    filtr === 'all'
-      ? bookData
-      : bookData.filter((book) => book.volumeInfo.categories?.includes(filtr));
+  const [bookData, setData] = useState<Book[]>([]);
+  const { filteredBooks, handleCategoryClick, categories } = useFilter(bookData);
 
   return (
     <>
@@ -42,33 +34,16 @@ const Main = () => {
             </button>
           </div>
           <div className="butt">
-            <button onClick={() => handleCategoryClick('all')}>
-              <i className="all"> all </i>
-            </button>
-            <button onClick={() => handleCategoryClick('Art')}>
-              <i className="art"> art </i>
-            </button>
-            <button onClick={() => handleCategoryClick('Biography')}>
-              <i className="biography"> biography </i>
-            </button>
-            <button onClick={() => handleCategoryClick('Computers')}>
-              <i className="computers"> computers </i>
-            </button>
-            <button onClick={() => handleCategoryClick('History')}>
-              <i className="history"> history </i>
-            </button>
-            <button onClick={() => handleCategoryClick('Medical')}>
-              <i className="medical"> medical </i>
-            </button>
-            <button onClick={() => handleCategoryClick('Poetry')}>
-              <i className="poetry"> poetry </i>
-            </button>
+            {categories.map((category) => (
+              <button key={category} onClick={() => handleCategoryClick(category)}>
+                <i className={category}> {category} </i>
+              </button>
+            ))}
           </div>
           <img src="./images/bg2.png" alt="" />
         </div>
       </div>
-
-      <div className="container">{filteredBooks.length > 0 && <Card book={filteredBooks} />}</div>
+      <div className="container">{filteredBooks.length > 0 && <Card book={filteredBooks} />}</div>{' '}
     </>
   );
 };
