@@ -1,22 +1,6 @@
 import React from 'react';
-
-interface Book {
-  id: string;
-  thumbnail?: string;
-  volumeInfo: {
-    title: string;
-    authors?: string[];
-    publisher?: string;
-    previewLink?: string;
-    description?: string;
-  };
-}
-
-interface ModalProps {
-  show: boolean;
-  item: Book;
-  onClose: () => void;
-}
+import { ModalProps } from '../../constants/ModalPropsInterface';
+import { Book } from '../../constants/bookInterface';
 
 const Modal: React.FC<ModalProps> = ({ show, item, onClose }) => {
   if (!show) {
@@ -32,17 +16,15 @@ const Modal: React.FC<ModalProps> = ({ show, item, onClose }) => {
           <div className="inner-box">
             <img src={item.thumbnail} alt="" />
             <div className="info">
-              <h1>{item.volumeInfo.title}</h1>
-              <h3>{item.volumeInfo.authors}</h3>
+              <h1>{item.title}</h1>
+              <h3>{item.authors}</h3>
               <br />
-              <h4>{item.volumeInfo.publisher}</h4>
-              <br />
-              <a href={item.volumeInfo.previewLink}>
+              <a href={item.previewLink}>
                 <button>MORE</button>
               </a>
             </div>
           </div>
-          <h4 className="description">{item.volumeInfo.description}</h4>
+          <h4 className="description">{item.description}</h4>
         </div>
       </div>
     </>
