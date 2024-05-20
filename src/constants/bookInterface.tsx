@@ -8,10 +8,13 @@ export interface Book {
   authors?: string[];
   description?: string;
   subtitle?: string;
+  publishedDate?: string;
+  categories?: string[];
   volumeInfo: {
     title: string;
     subtitle?: string;
     authors?: string[];
+    publishedDate?: string;
     description?: string;
     categories?: string[];
     imageLinks?: {

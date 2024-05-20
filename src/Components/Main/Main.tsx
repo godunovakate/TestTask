@@ -3,12 +3,16 @@ import Card from '../Card/Card';
 import searchBook from '../../utils/searchBook';
 import { Book } from '../../constants/bookInterface';
 import useFilter from '../../utils/categoriesFiltr';
+import sortBooks from '../../utils/newestSort';
 
 const Main = () => {
   const [search, setSearch] = useState('');
   const [bookData, setData] = useState<Book[]>([]);
+  const [isSorted, setIsSorted] = useState(false); // Добавлено состояние для сортировки
   const { filteredBooks, handleCategoryClick, categories } = useFilter(bookData);
 
+  // Сортировка книг по дате добавления, если включена сортировка
+  const displayedBooks = isSorted ? sortBooks(filteredBooks) : filteredBooks;
   return (
     <>
       <div className="header">
@@ -33,6 +37,13 @@ const Main = () => {
               <i className="fas fa-search"></i>
             </button>
           </div>
+
+          <div className="sort">
+            <button onClick={() => setIsSorted(!isSorted)}>
+              {isSorted ? 'relative' : 'newest'}
+            </button>
+          </div>
+
           <div className="butt">
             {categories.map((category) => (
               <button key={category} onClick={() => handleCategoryClick(category)}>
@@ -40,10 +51,11 @@ const Main = () => {
               </button>
             ))}
           </div>
+
           <img src="./images/bg2.png" alt="" />
         </div>
       </div>
-      <div className="container">{filteredBooks.length > 0 && <Card book={filteredBooks} />}</div>{' '}
+      <div className="container">{displayedBooks.length > 0 && <Card book={displayedBooks} />}</div>{' '}
     </>
   );
 };

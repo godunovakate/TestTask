@@ -10,6 +10,7 @@ const mapData = (item: Book) => {
       authors,
       description,
       subtitle,
+      publishedDate,
     } = {},
   } = item;
   return {
@@ -21,6 +22,7 @@ const mapData = (item: Book) => {
     description,
     subtitle,
     categories,
+    publishedDate,
   };
 };
 
