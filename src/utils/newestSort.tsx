@@ -1,4 +1,3 @@
-// utils/sortBooks.ts
 import { Book } from '../constants/bookInterface';
 
 const sortBooks = (books: Book[]): Book[] => {
