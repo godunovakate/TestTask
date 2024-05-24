@@ -1,4 +1,4 @@
-// hooks/useFilter.tsx
+// hooks
 import { useState } from 'react';
 import mapData from './mapBookData';
 import { Book } from '../constants/bookInterface';

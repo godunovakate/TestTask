@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from '../Card/Card';
 import searchBook from '../../utils/searchBook';
 import { Book } from '../../constants/bookInterface';
@@ -10,6 +10,11 @@ const Main = () => {
   const [bookData, setData] = useState<Book[]>([]);
   const [isSorted, setIsSorted] = useState(false);
   const { filteredBooks, handleCategoryClick, categories } = useFilter(bookData);
+  const [theme, setTheme] = useState('light');
+
+  useEffect(() => {
+    document.body.className = theme;
+  }, [theme]);
 
   const displayedBooks = isSorted ? sortBooks(filteredBooks) : filteredBooks;
 
@@ -32,6 +37,7 @@ const Main = () => {
             <br /> API.
           </h1>
         </div>
+        <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>CHANGE THEME</button>
         <div className="row2">
           <h2>Search your book</h2>
           <div className="search">

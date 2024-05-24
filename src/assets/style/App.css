@@ -7,7 +7,7 @@
 }
 
 :root{
-    --primary-color:rgb(208, 209, 213);
+    --primary-color:rgb(255, 255, 255);
     --secondary-color:rgb(117, 122, 129);
 }
 
@@ -213,3 +213,13 @@ html{
     font-size: 20px;
     font-weight: bold;
 }
+body.light {
+    background-color: #fff;
+    color: #000;
+  }
+  
+  body.dark {
+    background-color: #000;
+    color: #fff;
+  }
+  
