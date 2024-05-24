@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Card from 'Components/Card/Card';
 import searchBook from 'utils/searchBook';
 import { Book } from 'constants/bookInterface';
-import useFilter from 'utils/categoriesFiltr';
+import useFilter from 'hooks/categoriesFiltr';
 import sortBooks from 'utils/newestSort';
 
 const Main = () => {
