@@ -1,7 +1,7 @@
 // hooks
 import { useState } from 'react';
 import mapData from './mapBookData';
-import { Book } from '../constants/bookInterface';
+import { Book } from 'constants/bookInterface';
 
 const useFilter = (bookData: Book[]) => {
   const [filtr, setFiltr] = useState('all');

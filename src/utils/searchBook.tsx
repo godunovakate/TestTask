@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import { Book } from '../constants/bookInterface';
-import { GOOGLE_BOOKS_API_KEY, GOOGLE_BOOKS_API_URL } from '../constants/api';
+import { Book } from 'constants/bookInterface';
+import { GOOGLE_BOOKS_API_KEY, GOOGLE_BOOKS_API_URL } from 'constants/api';
 import mapData from './mapBookData';
 
 // Функция searchBook теперь принимает строку поиска в качестве аргумента

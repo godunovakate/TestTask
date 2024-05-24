@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import Modal from '../Modal/Modal';
-import { Book } from '../../constants/bookInterface';
-import mapData from '../../utils/mapBookData';
-import BookCard from '../../constants/bookCard';
+import Modal from 'Components/Modal/Modal';
+import { Book } from 'constants/bookInterface';
+import mapData from 'utils/mapBookData';
+import BookCard from 'constants/bookCard';
 
 const Card = ({ book }: { book: Book[] }) => {
   const [show, setShow] = useState(false);

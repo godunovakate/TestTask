@@ -1,5 +1,5 @@
 import React from 'react';
-import { ModalProps } from '../../constants/ModalPropsInterface';
+import { ModalProps } from 'constants/ModalPropsInterface';
 
 const Modal: React.FC<ModalProps> = ({ show, item, onClose }) => {
   if (!show) {

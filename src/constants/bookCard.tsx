@@ -1,6 +1,6 @@
 import React from 'react';
 import { Book } from './bookInterface';
-import mapData from '../utils/mapBookData';
+import mapData from 'utils/mapBookData';
 
 const BookCard = ({ item, onClick }: { item: Book; onClick: () => void }) => {
   const {
