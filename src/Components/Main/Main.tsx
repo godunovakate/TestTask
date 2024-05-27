@@ -11,6 +11,8 @@ const Main = () => {
   const [isSorted, setIsSorted] = useState(false);
   const { filteredBooks, handleCategoryClick, categories } = useFilter(bookData);
   const [theme, setTheme] = useState('light');
+  const [count, setCount] = useState(0);
+  const [startIndex, setStartIndex] = useState(0);
 
   useEffect(() => {
     document.body.className = theme;
@@ -24,8 +26,13 @@ const Main = () => {
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
-      searchBook(search, setSearch, setData);
+      searchBook(search, setSearch, setData, setCount, startIndex);
     }
+  };
+
+  const loadMoreBooks = () => {
+    setStartIndex((prevIndex) => prevIndex + 30);
+    searchBook(search, setSearch, setData, setCount, startIndex + 30);
   };
 
   return (
@@ -57,6 +64,7 @@ const Main = () => {
               {isSorted ? 'relative' : 'newest'}
             </button>
           </div>
+          <p>all books: {count}</p>
           <div className="butt">
             {categories.map((category) => (
               <button key={category} onClick={() => handleCategoryClick(category)}>
@@ -68,6 +76,7 @@ const Main = () => {
         </div>
       </div>
       <div className="container">{displayedBooks.length > 0 && <Card book={displayedBooks} />}</div>
+      <button onClick={loadMoreBooks}>Load More</button>
     </>
   );
 };
