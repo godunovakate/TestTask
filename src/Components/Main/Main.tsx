@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Card from 'Components/Card/Card';
 import searchBook from 'utils/searchBook';
 import { Book } from 'constants/bookInterface';
-import useFilter from 'hooks/categoriesFiltr';
+import useFilter from 'hooks/categoriesFilter';
 import sortBooks from 'utils/newestSort';
 
 const Main = () => {
@@ -30,6 +30,7 @@ const Main = () => {
 
   return (
     <>
+      <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>CHANGE THEME</button>
       <div className="header">
         <div className="row1">
           <h1>
@@ -37,7 +38,6 @@ const Main = () => {
             <br /> API.
           </h1>
         </div>
-        <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>CHANGE THEME</button>
         <div className="row2">
           <h2>Search your book</h2>
           <div className="search">

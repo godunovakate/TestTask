@@ -1,4 +1,4 @@
-import { Book } from "constants/bookInterface";
+import { Book } from 'constants/bookInterface';
 
 const sortBooks = (books: Book[]): Book[] => {
   return [...books].sort((a, b) => {

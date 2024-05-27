@@ -1,23 +1,22 @@
-// hooks
 import { useState } from 'react';
 import mapData from '../utils/mapBookData';
 import { Book } from 'constants/bookInterface';
 
 const useFilter = (bookData: Book[]) => {
-  const [filtr, setFiltr] = useState('all');
+  const [filter, setFilter] = useState('all');
 
   const mappedBookData = bookData.map(mapData);
 
   const categories = Array.from(new Set(mappedBookData.flatMap((book) => book.categories || [])));
 
   const handleCategoryClick = (category: string) => {
-    setFiltr(category);
+    setFilter(category);
   };
 
   const filteredBooks =
-    filtr === 'all'
+    filter === 'all'
       ? mappedBookData
-      : mappedBookData.filter((book) => book.categories?.includes(filtr));
+      : mappedBookData.filter((book) => book.categories?.includes(filter));
 
   return { filteredBooks, handleCategoryClick, categories };
 };

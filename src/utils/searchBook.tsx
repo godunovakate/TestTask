@@ -9,7 +9,9 @@ const searchBook = (
   setData: React.Dispatch<React.SetStateAction<Book[]>>,
 ) => {
   axios
-    .get(`${process.env.REACT_APP_GOOGLE_BOOKS_API_URL}?q=${search}&key=${process.env.REACT_APP_GOOGLE_BOOKS_API_KEY}&maxResults=40`)
+    .get(
+      `${process.env.REACT_APP_GOOGLE_BOOKS_API_URL}?q=${search}&key=${process.env.REACT_APP_GOOGLE_BOOKS_API_KEY}&maxResults=40`,
+    )
     .then(({ data: { items } }) => {
       const mappedData = items.map(mapData);
       setData(mappedData);
