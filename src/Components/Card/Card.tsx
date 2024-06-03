@@ -3,6 +3,7 @@ import Modal from 'Components/Modal/Modal';
 import { Book } from 'constants/bookInterface';
 import mapData from 'utils/mapBookData';
 import BookCard from 'constants/bookCard';
+import 'Components/Card/card.css';
 
 const Card = ({ book }: { book: Book[] }) => {
   const [show, setShow] = useState(false);

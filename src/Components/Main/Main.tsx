@@ -5,6 +5,7 @@ import { Book } from 'constants/bookInterface';
 import useFilter from 'hooks/categoriesFilter';
 import sortBooks from 'utils/newestSort';
 import Input from 'Components/Input/Input';
+import 'Components/Main/main.css';
 
 const Main = () => {
   const [search, setSearch] = useState('');
