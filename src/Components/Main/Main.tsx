@@ -29,7 +29,7 @@ const Main = () => {
   };
 
   const onSubmit = (input: string) => {
-    searchBook(input, setSearch, setData, setTotalBooks, setError); // Removed setPage
+    searchBook(input, setSearch, setData, setTotalBooks, setError);
   };
 
   return (

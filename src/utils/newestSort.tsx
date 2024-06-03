@@ -10,4 +10,9 @@ const sortBooks = (books: Book[]): Book[] => {
 };
 
 export default sortBooks;
-//?? оператор...
+
+/* 
+const dateA = a.publishedDate ? new Date(a.publishedDate).getTime() : 0;
+const dateB = b.publishedDate ? new Date(b.publishedDate).getTime() : 0;
+return dateB - dateA;
+     */
