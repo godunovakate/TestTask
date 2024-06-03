@@ -7,19 +7,26 @@ const searchBook = (
   search: string,
   setSearch: React.Dispatch<React.SetStateAction<string>>,
   setData: React.Dispatch<React.SetStateAction<Book[]>>,
-  setCount: React.Dispatch<React.SetStateAction<number>>,
-  startIndex: number,
+  setTotalBooks: React.Dispatch<React.SetStateAction<number>>,
+  setError: React.Dispatch<React.SetStateAction<string | null>>,
 ) => {
   axios
     .get(
-      `${process.env.REACT_APP_GOOGLE_BOOKS_API_URL}?q=${search}&key=${process.env.REACT_APP_GOOGLE_BOOKS_API_KEY}&maxResults=30&startIndex=${startIndex}`,
+      `https://www.googleapis.com/books/v1/volumes?q=${search}&key=${process.env.REACT_APP_GOOGLE_BOOKS_API_KEY}&maxResults=30`,
     )
-    .then(({ data: { items } }) => {
-      const mappedData = items.map(mapData);
-      setData((prevBooks) => [...prevBooks, ...mappedData]);
-      setCount((prevCount) => prevCount + items.length);
+    .then(({ data: { items, totalItems } }) => {
+      if (items) {
+        const mappedData = items.map(mapData);
+        setData(mappedData);
+        setTotalBooks(totalItems);
+      } else {
+        console.log('No books found');
+      }
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      console.log(err);
+      setError('An error occurred while fetching books');
+    });
 };
 
 export default searchBook;

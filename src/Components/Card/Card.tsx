@@ -10,8 +10,9 @@ const Card = ({ book }: { book: Book[] }) => {
 
   return (
     <>
-      {book.map((item) => (
+      {book.map((item, index) => (
         <BookCard
+          key={index}
           item={mapData(item)}
           onClick={() => {
             setShow(true);
@@ -19,7 +20,13 @@ const Card = ({ book }: { book: Book[] }) => {
           }}
         />
       ))}
-      {bookItem && <Modal show={show} item={mapData(bookItem)} onClose={() => setShow(false)} />}
+      {bookItem && (
+        <Modal
+          show={show}
+          item={mapData(bookItem)}
+          onClose={() => setShow(false)}
+        />
+      )}
     </>
   );
 };

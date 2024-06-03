@@ -4,15 +4,17 @@ import searchBook from 'utils/searchBook';
 import { Book } from 'constants/bookInterface';
 import useFilter from 'hooks/categoriesFilter';
 import sortBooks from 'utils/newestSort';
+import Input from 'Components/Input/Input';
 
 const Main = () => {
   const [search, setSearch] = useState('');
   const [bookData, setData] = useState<Book[]>([]);
   const [isSorted, setIsSorted] = useState(false);
-  const { filteredBooks, handleCategoryClick, categories } = useFilter(bookData);
+  const { filteredBooks, handleCategoryClick, categories } =
+    useFilter(bookData);
   const [theme, setTheme] = useState('light');
-  const [count, setCount] = useState(0);
-  const [startIndex, setStartIndex] = useState(0);
+  const [totalBooks, setTotalBooks] = useState(0);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     document.body.className = theme;
@@ -20,63 +22,51 @@ const Main = () => {
 
   const displayedBooks = isSorted ? sortBooks(filteredBooks) : filteredBooks;
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value);
+  const clearApp = () => {
+    setData([]);
+    setTotalBooks(0);
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      searchBook(search, setSearch, setData, setCount, startIndex);
-    }
-  };
-
-  const loadMoreBooks = () => {
-    setStartIndex((prevIndex) => prevIndex + 30);
-    searchBook(search, setSearch, setData, setCount, startIndex + 30);
+  const onSubmit = (input: string) => {
+    searchBook(input, setSearch, setData, setTotalBooks, setError); // Removed setPage
   };
 
   return (
     <>
-      <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>CHANGE THEME</button>
+      <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
+        CHANGE THEME
+      </button>
       <div className="header">
-        <div className="row1">
-          <h1>
-            Google
-            <br /> API.
-          </h1>
-        </div>
+        <div className="row1"></div>
         <div className="row2">
           <h2>Search your book</h2>
-          <div className="search">
-            <input
-              type="text"
-              placeholder="Enter Your Book Name"
-              value={search}
-              onChange={handleInputChange}
-              onKeyPress={handleKeyPress}
-            />
-            <button>
-              <i className="fas fa-search"></i>
-            </button>
-          </div>
+          <Input clearApp={clearApp} onSubmit={onSubmit} />
           <div className="sort">
-            <button onClick={() => setIsSorted(!isSorted)}>
-              {isSorted ? 'relative' : 'newest'}
-            </button>
+            {' '}
+            filter on
+            <select onChange={(e) => setIsSorted(e.target.value === 'newest')}>
+              <option value="relative">relative</option>
+              <option value="newest">newest</option>
+            </select>
           </div>
-          <p>all books: {count}</p>
+
           <div className="butt">
-            {categories.map((category) => (
-              <button key={category} onClick={() => handleCategoryClick(category)}>
-                <i className={category}> {category} </i>
-              </button>
-            ))}
+            {' '}
+            Sort on
+            <select onChange={(e) => handleCategoryClick(e.target.value)}>
+              {categories.map((category) => (
+                <option key={category} value={category}>
+                  {category}
+                </option>
+              ))}
+            </select>
           </div>
-          <img src="./images/bg2.png" alt="" />
+          {totalBooks > 0 && <p>Found {totalBooks} books</p>}
         </div>
       </div>
-      <div className="container">{displayedBooks.length > 0 && <Card book={displayedBooks} />}</div>
-      <button onClick={loadMoreBooks}>Load More</button>
+      <div className="container">
+        {displayedBooks.length > 0 && <Card book={displayedBooks} />}
+      </div>
     </>
   );
 };
