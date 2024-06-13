@@ -1,0 +1,10 @@
+.query-btn {
+  border: none;
+  color: white;
+}
+
+@media (max-width: 340px) {
+  .query-btn {
+    width: 100%;
+  }
+}

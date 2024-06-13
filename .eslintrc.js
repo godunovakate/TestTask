@@ -9,6 +9,7 @@ module.exports = {
         'import',
         'react',
         'prettier',
+        "simple-import-sort",
     ],
     parser: '@babel/eslint-parser',
     parserOptions: {
@@ -24,5 +25,7 @@ module.exports = {
             {endOfLine: 'auto'},
         ],
         'react/react-in-jsx-scope': 'off',
+        "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
     },
 };

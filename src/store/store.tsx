@@ -1,6 +1,14 @@
-import { createStore } from 'redux';
-import reducer from './reducers/reducers';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import dataReducer from './reducers/dataReducer';
+import errorReducer from './reducers/errorReducer';
+import searchReducer from './reducers/searchReducer';
 
-const store = createStore(reducer);
+const rootReducer = combineReducers({
+  dataReducer: dataReducer,
+  errorReducer: errorReducer,
+  searchReducer: searchReducer,
+});
+
+const store = configureStore({ reducer: rootReducer });
 
 export default store;

@@ -1,4 +1,4 @@
-import { Book } from './bookInterface';
+import { Book } from "constants/bookInterface";
 
 export interface ModalProps {
   show: boolean;

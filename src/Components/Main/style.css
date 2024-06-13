@@ -40,7 +40,7 @@ html{
 
 .header{
     content: "";
-    background: url(D:\git\TestTask\my-app\src\assets\images\bg5.jpg);
+    background: url(D:\git\TestTask\my-app\src\assets\images\background.jpg);
 background-position: bottom;
 }
 
@@ -70,9 +70,6 @@ left: 40%;
     box-sizing: border-box;
 }
 
-
-
-
 body.light {
     background-color: #fff;
     color: #000;
@@ -81,20 +78,6 @@ body.light {
   body.dark {
     background-color: #000;
     color: #fff;
-  }
-  
-  .sort {
-    margin-top: 5px;
-    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', 'Calibri', 'Arial', sans-serif;
-    font-size: 18px;
-    color: #60666d;
-  }
-
-  .butt {
-margin-top: 5px;
-font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', 'Calibri', 'Arial', sans-serif;
-font-size: 18px;
-color: #60666d;
   }
  
 select {
@@ -117,7 +100,4 @@ select {
   @media (min-width: 1200px) {
     width: 30%;
   }
-
-
 }
-

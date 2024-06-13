@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
-import Modal from 'Components/Modal/Modal';
+import 'components/Card/style.css';
+import Modal from 'components/Modal/Modal';
 import { Book } from 'constants/bookInterface';
 import mapData from 'utils/mapBookData';
-import BookCard from 'constants/bookCard';
-import 'Components/Card/card.css';
+import BookCard from 'components/BookCard/BookCard';
 
 const Card = ({ book }: { book: Book[] }) => {
   const [show, setShow] = useState(false);
   const [bookItem, setItem] = useState<Book | null>(null);
+
+  const handleClick = (item: Book) => {
+    setShow(true);
+    setItem(item);
+  };
 
   return (
     <>
@@ -15,10 +20,7 @@ const Card = ({ book }: { book: Book[] }) => {
         <BookCard
           key={index}
           item={mapData(item)}
-          onClick={() => {
-            setShow(true);
-            setItem(item);
-          }}
+          onClick={() => handleClick(item)}
         />
       ))}
       {bookItem && (

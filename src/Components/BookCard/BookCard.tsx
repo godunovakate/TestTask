@@ -1,5 +1,4 @@
-import React from 'react';
-import { Book } from './bookInterface';
+import { Book } from '../../constants/bookInterface';
 import mapData from 'utils/mapBookData';
 
 const BookCard = ({ item, onClick }: { item: Book; onClick: () => void }) => {

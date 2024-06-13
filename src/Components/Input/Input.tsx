@@ -1,68 +1,51 @@
-import React, { ChangeEvent, KeyboardEvent } from 'react';
+import React, {
+  useState,
+  ChangeEvent,
+  KeyboardEvent,
+  useCallback,
+} from 'react';
+import debounce from 'debounce';
+import 'components/Input/style.css';
+import { SearchInputProps } from './types';
+import SearchField from 'components/SearchField/Search';
 
-interface InputProps {
-  clearApp: () => void;
-  onSubmit: (input: string) => void;
-}
+const SearchInput: React.FC<SearchInputProps> = ({ clearApp, onSubmit }) => {
+  const [input, setInput] = useState('');
 
-interface InputState {
-  input: string;
-}
+  const debouncedOnSubmit = useCallback(
+    debounce((nextValue: string) => onSubmit(nextValue), 300),
+    [],
+  );
 
-class Input extends React.Component<InputProps, InputState> {
-  constructor(props: InputProps) {
-    super(props);
-    this.state = {
-      input: '',
-    };
-  }
-
-  handleUserInput = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleUserInput = (e: ChangeEvent<HTMLInputElement>): void => {
     e.preventDefault();
-    let value = e.currentTarget.value;
-    if (value === '') {
-      this.props.clearApp();
-    }
-    this.setState({ input: value });
+    const value = e.currentTarget.value;
+    setInput(value);
+    debouncedOnSubmit(value);
   };
 
-  handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
-    let { input } = this.state;
+  const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>): void => {
     if (e.key === 'Enter') {
-      this.props.onSubmit(input);
+      onSubmit(input);
     }
   };
 
-  render() {
-    let { input } = this.state;
+  return (
+    <>
+      <SearchField
+        input={input}
+        handleUserInput={handleUserInput}
+        handleKeyPress={handleKeyPress}
+      />
+      <button
+        className="query-btn"
+        type="button"
+        onClick={() => onSubmit(input)}
+      >
+        Search
+      </button>
+    </>
+  );
+};
 
-    return (
-      <>
-        <input
-          id="query-input"
-          type="search"
-          name="input"
-          value={input}
-          placeholder="Search by book title or author..."
-          onChange={(e) => {
-            this.handleUserInput(e);
-          }}
-          onKeyUp={(e) => {
-            this.handleKeyPress(e);
-          }}
-        />
-        <button
-          className="query-btn"
-          type="button"
-          onClick={() => {
-            this.props.onSubmit(input);
-          }}
-        >
-          Search
-        </button>
-      </>
-    );
-  }
-}
-
-export default Input;
+export default SearchInput;

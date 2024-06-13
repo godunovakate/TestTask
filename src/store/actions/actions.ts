@@ -1,7 +1,7 @@
 import { ActionTypes } from './actionTypes';
 import { Book } from 'constants/bookInterface';
 
-
+//тема, детальное описанние
 
 export const SET_SEARCH = (search: string) => ({
   type: ActionTypes.SET_SEARCH,
@@ -15,7 +15,5 @@ export const SET_DATA = (data: Book[]) => ({
 
 export const SET_ERROR = (error: string | null) => ({
   type: ActionTypes.SET_ERROR,
-  payload:{
-    message: error
-  },
+  payload: error,
 });

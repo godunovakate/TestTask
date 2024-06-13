@@ -1,8 +1,14 @@
 import React from 'react';
-import { ModalProps } from 'constants/ModalPropsInterface';
-import 'Components/Modal/modal.css';
+import 'components/Modal/style.css';
+import { ModalProps } from './types';
 
-const Modal: React.FC<ModalProps> = ({ show, item, onClose }) => {
+//использовала деструктуризацию
+
+const Modal: React.FC<ModalProps> = ({
+  show,
+  item: { thumbnail, title, authors, previewLink, description },
+  onClose,
+}) => {
   if (!show) {
     return null;
   }
@@ -14,17 +20,17 @@ const Modal: React.FC<ModalProps> = ({ show, item, onClose }) => {
             <i className="fas fa-times"></i>
           </button>
           <div className="inner-box">
-            <img src={item.thumbnail} alt="" />
+            <img src={thumbnail} alt="" />
             <div className="info">
-              <h1>{item.title}</h1>
-              <h3>{item.authors}</h3>
+              <h1>{title}</h1>
+              <h3>{authors}</h3>
               <br />
-              <a href={item.previewLink}>
+              <a href={previewLink}>
                 <button>MORE</button>
               </a>
             </div>
           </div>
-          <h4 className="description">{item.description}</h4>
+          <h4 className="description">{description}</h4>
         </div>
       </div>
     </>
